@@ -10,13 +10,19 @@ package fun.digitallpepper.logistic_service.model;
 
 */
 
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
+
+@Entity
+@Table(name = "buyers")
 public class Buyer {
+    @Id
+    @GeneratedValue
     private Long id;
+    @Column(unique = true)
     private String login;
     private String email;
     private String phone;
