@@ -32,7 +32,6 @@ public class BuyerService implements BuyerServise {
     @Override
     public Buyer findBuyerById(Long id) {
         return repository.findById(id).orElse(null);
-
     }
 
     @Override

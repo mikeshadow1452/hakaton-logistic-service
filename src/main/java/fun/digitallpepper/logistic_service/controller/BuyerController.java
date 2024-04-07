@@ -8,18 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/buyers")
+@RequestMapping("api/buyer")
 @AllArgsConstructor
 public class BuyerController {
 
     private final BuyerServise servise;
 
-    @GetMapping
-    public List<Buyer> getAllBuyers() {
-        return null;
-    }
-
-    @PostMapping("saveBuyer")
+    @PostMapping("/saveBuyer")
     public Buyer saveBuyer(@RequestBody Buyer buyer) {
         return servise.saveBuyer(buyer);
     }
@@ -28,8 +23,9 @@ public class BuyerController {
         return servise.findBuyerById(id);
     }
     @DeleteMapping("remove/{id}")
-    public void deleteBuyerById(@PathVariable Long id) {
+    public String  deleteBuyerById(@PathVariable Long id) {
         servise.deleteBuyerById(id);
+        return "User with id " + id + " was deleted";
     }
 
 }

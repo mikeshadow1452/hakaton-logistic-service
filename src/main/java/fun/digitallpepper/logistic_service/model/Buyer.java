@@ -27,6 +27,8 @@ public class Buyer {
     private String email;
     private String phone;
     private String password;
+
+
 //    private Cart cart;
 //    private Order[] orderHistory;
 //    private String sessionLogin;
