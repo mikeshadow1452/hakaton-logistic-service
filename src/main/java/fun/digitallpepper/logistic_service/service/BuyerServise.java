@@ -18,6 +18,11 @@ public interface BuyerServise {
     List<Buyer> getBuyerOrders(Long buyerId);
 
 
+
+
+
+
+
 //    Buyer findBuyerByEmail(String email);
 //
 
