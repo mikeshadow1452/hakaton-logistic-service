@@ -1,8 +1,8 @@
 package fun.digitallpepper.logistic_service.service.impl;
 
-import fun.digitallpepper.logistic_service.model.Buyer;
 import fun.digitallpepper.logistic_service.model.Seller;
-import fun.digitallpepper.logistic_service.repositpry.SellerRepository;
+import fun.digitallpepper.logistic_service.repository.SellerRepository;
+import fun.digitallpepper.logistic_service.service.SellerServise;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @Primary
-public class SellerService implements fun.digitallpepper.logistic_service.service.SellerService {
+public class SellerService implements SellerServise {
 
     private final SellerRepository repository;
 

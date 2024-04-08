@@ -1,8 +1,9 @@
 package fun.digitallpepper.logistic_service.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.util.ArrayList;
 
 /*
 логин (ключ)
@@ -26,9 +27,9 @@ public class Seller {
     private String email;
     private String phone;
     private String password;
+    @OneToMany
+    private ArrayList<Product> products;
 //    todo мааааакс сделай пжпжпж
-
-//    private List<Product> products;
 //    private List<PickupPoint> pickupPoints;
 //    private List<Warehouse> warehouses;
 

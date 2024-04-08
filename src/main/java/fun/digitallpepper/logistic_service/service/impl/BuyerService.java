@@ -1,7 +1,7 @@
 package fun.digitallpepper.logistic_service.service.impl;
 
 import fun.digitallpepper.logistic_service.model.Buyer;
-import fun.digitallpepper.logistic_service.repositpry.BuyerRepository;
+import fun.digitallpepper.logistic_service.repository.BuyerRepository;
 import fun.digitallpepper.logistic_service.service.BuyerServise;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;

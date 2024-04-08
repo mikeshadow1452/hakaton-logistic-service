@@ -1,4 +1,4 @@
-package fun.digitallpepper.logistic_service.repositpry;
+package fun.digitallpepper.logistic_service.repository;
 
 import fun.digitallpepper.logistic_service.model.Buyer;
 import org.springframework.data.jpa.repository.JpaRepository;

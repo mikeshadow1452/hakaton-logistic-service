@@ -1,11 +1,10 @@
 package fun.digitallpepper.logistic_service.service;
 
-import fun.digitallpepper.logistic_service.model.Buyer;
 import fun.digitallpepper.logistic_service.model.Seller;
 
 import java.util.List;
 
-public interface SellerService {
+public interface SellerServise {
 
     Seller saveSeller(Seller seller);
 

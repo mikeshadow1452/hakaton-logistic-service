@@ -2,19 +2,16 @@ package fun.digitallpepper.logistic_service.controller;
 
 
 import fun.digitallpepper.logistic_service.model.Seller;
-import fun.digitallpepper.logistic_service.service.SellerService;
+import fun.digitallpepper.logistic_service.service.SellerServise;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/seller")
 @AllArgsConstructor
 public class SellerController {
 
-    private SellerService sellerService;
+    private SellerServise sellerService;
 
     @GetMapping("/get/{id}")
     public Seller getSellerById(@PathVariable Long id) {
