@@ -17,14 +17,10 @@ import java.util.Optional;
 
 
 @Service
-@AllArgsConstructor
 @Primary
 public class BuyerService implements BuyerServise, UserDetailsService {
-    private final BuyerRepository repository;
-
     @Autowired
-    private BuyerServise user;
-
+    private  BuyerRepository repository;
 
     @Override
     public Buyer saveBuyer(Buyer buyer) {
@@ -53,13 +49,12 @@ public class BuyerService implements BuyerServise, UserDetailsService {
 
     @Override
     public Optional<Buyer> findBuyerByLogin(String login) {
-        return
-                repository.findByLogin(login);
+        return repository.findByLogin(login);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Buyer> user = this.user.findBuyerByLogin(username);
+        Optional<Buyer> user = repository.findByLogin(username);
 
         return user.map(BuyerDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("No user found with username " + username));

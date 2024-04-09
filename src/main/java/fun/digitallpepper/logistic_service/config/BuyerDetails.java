@@ -1,18 +1,18 @@
 package fun.digitallpepper.logistic_service.config;
 
 import fun.digitallpepper.logistic_service.model.Buyer;
+import jakarta.persistence.Entity;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
+@Data
 public class BuyerDetails implements UserDetails {
 
     private final Buyer buyer;
 
-    public BuyerDetails(Buyer buyer) {
-        this.buyer = buyer;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
