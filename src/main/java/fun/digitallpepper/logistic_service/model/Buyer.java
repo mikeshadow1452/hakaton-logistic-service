@@ -27,6 +27,7 @@ public class Buyer {
     private String email;
     private String phone;
     private String password;
+    private String roles;
 
 
 //    private Cart cart;

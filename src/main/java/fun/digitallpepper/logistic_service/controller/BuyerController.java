@@ -2,6 +2,7 @@ package fun.digitallpepper.logistic_service.controller;
 
 import fun.digitallpepper.logistic_service.model.Buyer;
 import fun.digitallpepper.logistic_service.service.BuyerServise;
+import fun.digitallpepper.logistic_service.service.impl.BuyerService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import java.util.List;
 public class BuyerController {
 
     private final BuyerServise servise;
+
 
     @PostMapping("/saveBuyer")
     public Buyer saveBuyer(@RequestBody Buyer buyer) {

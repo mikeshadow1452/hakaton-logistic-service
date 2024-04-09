@@ -3,9 +3,10 @@ package fun.digitallpepper.logistic_service.service;
 import fun.digitallpepper.logistic_service.model.Buyer;
 
 import java.util.List;
+import java.util.Optional;
 
 
-public interface BuyerServise {
+public interface BuyerServise  {
 
     Buyer saveBuyer(Buyer buyer);
 
@@ -17,7 +18,10 @@ public interface BuyerServise {
 
     List<Buyer> getBuyerOrders(Long buyerId);
 
+    Optional<Buyer> findBuyerByLogin(String login);
 
+
+//    Optional<MyUserSecurity> findByLogin(String username);
 
 
 

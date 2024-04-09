@@ -1,36 +1,32 @@
 package fun.digitallpepper.logistic_service.config;
 
-import fun.digitallpepper.logistic_service.model.MyUserSecurity;
+import fun.digitallpepper.logistic_service.model.Buyer;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
-public class MyUserDetails implements UserDetails {
+public class BuyerDetails implements UserDetails {
 
-    private MyUserSecurity user;
+    private final Buyer buyer;
 
-    public MyUserDetails(MyUserSecurity user) {
-        this.user = user;
+    public BuyerDetails(Buyer buyer) {
+        this.buyer = buyer;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(user.getRoles().split(", "))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());    }
+        return null; // TODO: Implement this method
+    }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return buyer.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return buyer.getLogin();
     }
 
     @Override
