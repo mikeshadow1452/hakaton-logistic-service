@@ -1,7 +1,7 @@
 function HeaderLogo() {
     return(
-    <div className={""}>
-        <img src={"/src/assets/logo.png"}  alt={"logo"}/>
+    <div className="border-2 border-t-violet-500 border-b-violet-500">
+        <img src={"/src/assets/logoMini.png"}  alt={"logo"}/>
     </div>
     )
 }
