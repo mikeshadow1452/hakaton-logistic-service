@@ -1,5 +1,7 @@
 package fun.digitallpepper.logistic_service.service;
 
+import fun.digitallpepper.logistic_service.config.MyUserDetails;
+import fun.digitallpepper.logistic_service.model.MyUserSecurity;
 import fun.digitallpepper.logistic_service.repository.UserSecurity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,15 +13,14 @@ import java.util.Optional;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
     @Autowired
-    private UserSecurity security;
+    private UserSecurity user;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Optional<UserSecurity> user = security.findByUsername(username);
-//        if (user.isPresent()) {
-//            return user.get();
-//        }
+        Optional<MyUserSecurity> user = this.user.findByName(username);
 
-        return null;
+
+        return user.map(MyUserDetails::new)
+                .orElseThrow(() -> new UsernameNotFoundException("No user found with username " + username));
     }
 }

@@ -1,8 +1,7 @@
 package fun.digitallpepper.logistic_service.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import fun.digitallpepper.logistic_service.model.MyUserSecurity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -12,6 +11,11 @@ public class testController {
     public String welcome() {
         return "mainPage/mainPage";
     }
+    @PostMapping("/new-user")
+    public String addUser(@RequestBody MyUserSecurity user) {
 
+        return "";
+
+    }
 
 }

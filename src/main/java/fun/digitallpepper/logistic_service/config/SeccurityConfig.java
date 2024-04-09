@@ -1,5 +1,6 @@
 package fun.digitallpepper.logistic_service.config;
 
+import fun.digitallpepper.logistic_service.service.MyUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,12 +25,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class SeccurityConfig {
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails userDetails = User.builder()
-                .username("admin")
-                .password(passwordEncoder.encode("admin"))
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(userDetails);
+        return new MyUserDetailsService();
     }
 
 
@@ -44,7 +40,6 @@ public class SeccurityConfig {
 //                            только зареганы
                                 .requestMatchers("/api/seller").authenticated())
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll).build();
-
 
 
     }

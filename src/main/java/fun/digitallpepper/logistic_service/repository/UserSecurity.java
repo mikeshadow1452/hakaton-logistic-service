@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface UserSecurity extends JpaRepository<MyUserSecurity, Long> {
 
-Optional<MyUserSecurity> findByUser(String username);
+Optional<MyUserSecurity> findByName(String username);
 }
