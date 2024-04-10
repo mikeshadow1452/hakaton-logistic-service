@@ -11,12 +11,14 @@ import java.util.LinkedHashSet;
 @Table(name = "regions")
 public class RegionNode {
     @Id
+    private Long id;
+
     private String name;
 
     @ManyToMany
     private LinkedHashSet<Edge> edges;
 
-    @OneToMany
+    @ManyToMany
     private LinkedHashMap<RegionNode, Edge> connected_regions;
 
 }

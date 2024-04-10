@@ -14,6 +14,8 @@ public class Edge {
     @GeneratedValue
     private Long id;
 
-    @ManyToMany
+    @OneToMany
     private LinkedHashSet<RegionNode> Regions;
+
+    private Long weight;
 }
