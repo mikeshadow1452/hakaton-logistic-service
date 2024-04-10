@@ -4,6 +4,9 @@ import '../index.css'
 import MainPage from "./MainPage.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <MainPage />
+    <div className="App bg-violet-50">
+        <MainPage />
+    </div>
+
 
 )
