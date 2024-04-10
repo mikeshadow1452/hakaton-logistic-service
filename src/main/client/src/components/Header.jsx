@@ -1,22 +1,21 @@
-import HeaderLogo from "./HeaderLogo.jsx";
 import CatalogButton from "./CatalogButton.jsx";
-import UserProfileButton from "./UserProfileButton.jsx";
-
+import HeaderLogo from "./HeaderLogo.jsx";
+import Search from "./Search.jsx";
+import ProfileButton from "./ProfileButton.jsx";
+import CartButton from "./CartButton.jsx";
 
 function Header() {
     return (
-        <header className={"bg-violet-500 flex space-x-4 items-center"}>
-            <div className={"p-1.5"}>
-                <CatalogButton/>
-            </div>
-            <div className={"p-1.5"}>
-                <HeaderLogo/>
-            </div>
-             <UserProfileButton/>
+        <header className={"h-18 bg-violet-500 flex items-center"}>
+            <CatalogButton/>
+            <HeaderLogo/>
+            <Search/>
+            <CartButton/>
+            <ProfileButton/>
         </header>
+
     )
 }
-
 
 
 export default Header;

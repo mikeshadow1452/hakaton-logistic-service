@@ -1,6 +1,10 @@
 function CatalogButton() {
     return(
-        <button className={"w-14 h-14 bg-violet-700 border-8 border-violet-600 rounded-none"}>---</button>
+        <div className="content-center">
+            <button className={"catalog-button ml-1.5 w-10 text-center bg-violet-400"}>
+                <img src={"/src/assets/catalogButton.png"} alt="Catalog Button" />
+            </button>
+        </div>
     )
 }
 

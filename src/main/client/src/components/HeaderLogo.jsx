@@ -1,8 +1,11 @@
-function HeaderLogo() {
+function HeaderLogo(){
     return(
-    <div className="border-2 border-t-violet-500 border-b-violet-500">
-        <img src={"/src/assets/logoMini.png"}  alt={"logo"}/>
-    </div>
+        <div className="header-logo">
+            <button>
+                <img className={"mt-0 mb-0 ml-8 mr-8"} src={"/src/assets/logoMini.png"} alt="logo"/>
+            </button>
+        </div>
     )
 }
+
 export default HeaderLogo;
