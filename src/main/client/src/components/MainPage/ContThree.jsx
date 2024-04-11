@@ -1,4 +1,4 @@
-function MainPageContThree() {
+function ContThree() {
     return (
         <div className={" border-t-4 border-t-violet-500 border-b-violet-500 mt"}>
             <h1 className={"mt-4 text-5xl text-center"}>
@@ -12,7 +12,7 @@ function MainPageContThree() {
                     <li>Опыт:
                     </li>
                     <li>
-                        ChokoDash имеет многолетний опыт работы в сфере логистики.v
+                        ChokoDash имеет многолетний опыт работы в сфере логистики.
                     </li>
                     <br/>
                     <li>Надежность:
@@ -38,4 +38,4 @@ function MainPageContThree() {
     )
 }
 
-export default MainPageContThree;
+export default ContThree;

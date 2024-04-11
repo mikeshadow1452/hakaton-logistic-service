@@ -1,5 +1,5 @@
-function MainPageContOne() {
-    return (<div className="border-b-1 border-t-4 border-t-violet-500 border-b-violet-500 mt">
+function ContOne() {
+    return (<div className="border-b-1 border-t-4 border-t-violet-500 border-b-violet-50">
             <h1 className={"mt-4 text-5xl text-center"}>
                 ChokoDash
             </h1>
@@ -47,4 +47,4 @@ function MainPageContOne() {
     </div>)
 }
 
-export default MainPageContOne;
+export default ContOne;

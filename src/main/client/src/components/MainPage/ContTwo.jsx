@@ -1,4 +1,4 @@
-function MainPageContTwo() {
+function ContTwo() {
     return (
         <div className={"border-b-4 border-t-4 border-t-violet-500 border-b-violet-500 mt"}>
             <h1 className={"mt-4 text-5xl text-center mb-4"}>
@@ -40,4 +40,4 @@ function MainPageContTwo() {
     )
 }
 
-export default MainPageContTwo;
+export default ContTwo;

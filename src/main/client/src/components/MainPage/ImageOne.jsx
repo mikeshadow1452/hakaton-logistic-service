@@ -1,4 +1,4 @@
-function MainPageImageOne() {
+function ImageOne() {
     return(
         <div>
             <img src={"/src/assets/imageOne.png"} alt={"image one"}/>
@@ -6,4 +6,4 @@ function MainPageImageOne() {
     )
 }
 
-export default MainPageImageOne;
+export default ImageOne;
