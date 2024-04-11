@@ -22,6 +22,11 @@ public class BuyerController {
     public Buyer findBuyerById(@PathVariable Long id) {
         return servise.findBuyerById(id);
     }
+    @GetMapping("hello")
+    public String hello(){
+
+        return "Hello, world";
+    }
     @DeleteMapping("remove/{id}")
     public String  deleteBuyerById(@PathVariable Long id) {
         servise.deleteBuyerById(id);
