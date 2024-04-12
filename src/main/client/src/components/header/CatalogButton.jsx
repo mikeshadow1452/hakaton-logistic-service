@@ -14,7 +14,7 @@ function CatalogButton() {
 
     return (
         <div>
-            <button onClick={handleClick} className={"bg-violet-400"}><img src={"/src/assets/catalogButton.png"} alt={"catalog button"}/></button>
+            <button onClick={handleClick} className={"bg-violet-400"}><img src={"/imgs/catalogButton.png"} alt={"catalog button"}/></button>
             <Modal
                 isOpen={visible}
                 onRequestClose={handleClose}

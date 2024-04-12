@@ -14,7 +14,7 @@ function ProfileButton() {
 
     return (
         <div>
-            <button onClick={handleClick} className={"bg-violet-400 mr-1.5"}><img src={"/src/assets/PFP.png"} alt={"profile picture"}/></button>
+            <button onClick={handleClick} className={"bg-violet-400 mr-1.5"}><img src={"/imgs/PFP.png"} alt={"profile picture"}/></button>
             <Modal
                 isOpen={visible}
                 onRequestClose={handleClose}
