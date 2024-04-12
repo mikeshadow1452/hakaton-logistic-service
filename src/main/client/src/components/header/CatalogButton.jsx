@@ -18,23 +18,24 @@ function CatalogButton() {
             <Modal
                 isOpen={visible}
                 onRequestClose={handleClose}
-                // style={{
-                //     overlay: {
-                //         backgroundColor: "",
-                //     },
-                //     content: {
-                //         position: "fixed",
-                //         top: "50px",
-                //         left: "0%",
-                //         transform: "translateY(0%)",
-                //         width: "180px",
-                //         height: "120px",
-                //         border: "none",
-                //         borderRadius: "0",
-                //         backgroundColor:"#8b5cf6",
-                //     },
-                // }}
-
+                style={{
+                    overlay: {
+                        backgroundColor: "",
+                    },
+                    content: {
+                        position: "fixed",
+                        top: "75px",
+                        left: "0%",
+                        width: "180px",
+                        height: "auto",
+                        border: "none",
+                        borderRadius: "0",
+                        backgroundColor:"#8b5cf6",
+                        flex: "start",
+                        alignItems: "flex-start",
+                        justifyContent: "start",
+                    },
+                }}
             >
                 <div className="profile-modal-content">
                     <h1>Ваш профиль</h1>

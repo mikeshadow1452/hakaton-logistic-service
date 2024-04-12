@@ -1,4 +1,4 @@
-import Header from "../components/header/Header.jsx";
+import Header from "../components/headers/Header.jsx";
 import ContOne from "../components/MainPage/ContOne.jsx";
 import ContTwo from "../components/MainPage/ContTwo.jsx";
 import ContThree from "../components/MainPage/ContThree.jsx";

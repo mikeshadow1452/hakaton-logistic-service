@@ -18,39 +18,31 @@ function ProfileButton() {
             <Modal
                 isOpen={visible}
                 onRequestClose={handleClose}
-                style={{
-                    overlay: {
-                        backgroundColor: "",
-                    },
-                    content: {
-                        position: "fixed",
-                        top: "50px",
-                        left: "89%",
-                        transform: "translateY(4%)",
-                        width: "180px",
-                        borderRadius: "0",
-                        border: "none",
-                        backgroundColor: "#8b5cf6",
-                        padding: "0px",
-                        paddingRight: "12px",
-                    },
-                }}
+                 style={{
+                      overlay: {
+                          backgroundColor: "",
+                      },
+                      content: {
+                          position: "fixed",
+                          top: "75px",
+                          left: "91.5%",
+                          width: "180px",
+                          borderRadius: "0",
+                          border: "none",
+                          backgroundColor: "#fde047",
+                          padding: "0px",
+                          paddingRight: "12px",
+                          height: "52px",
+                     },
+                 }}
             >
-                <div className="profile-modal-content">
-                    <div className={"h-full border-t-2 border-t-violet-600 text-center"}>
+                <div className="h-full profile-modal-content">
+                    <div className={" border-2 border-b-2 border-amber-600 text-center"}>
+                        <a href={"/src/logReg/login/login.html"}>
                         <button>
                             <span>Регистрация и Вход</span>
                         </button>
-                    </div>
-                    <div className={"border-t-2 border-t-violet-600 text-center"}>
-                        <button>
-                            <span>слово</span>
-                        </button>
-                    </div>
-                    <div className={"border-t-2 border-b-2 border-t-violet-600 border-b-violet-600 text-center"}>
-                        <button>
-                            <span>слово</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </Modal>
