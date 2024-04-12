@@ -1,5 +1,6 @@
 package fun.digitallpepper.logistic_service.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,9 +16,11 @@ public class Edge {
     private Long id;
 
     @ManyToOne
+    @JsonBackReference
     private RegionNode region1;  // Первый регион
 
     @ManyToOne
+    @JsonBackReference
     private RegionNode region2;  // Второй регион
 
     private Long weight;
