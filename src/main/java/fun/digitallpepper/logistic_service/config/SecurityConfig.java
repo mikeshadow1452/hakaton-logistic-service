@@ -1,35 +1,27 @@
 package fun.digitallpepper.logistic_service.config;
 
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+import fun.digitallpepper.logistic_service.service.impl.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.HttpBasicDsl;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SeccurityConfig {
+public class SecurityConfig {
     @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails userDetails = User.builder()
-                .username("admin")
-                .password(passwordEncoder.encode("admin"))
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(userDetails);
+    public UserDetailsService userDetailsService() {
+        return new UserService();
     }
 
 
@@ -39,14 +31,22 @@ public class SeccurityConfig {
                 .authorizeHttpRequests(
                         auch -> auch
 //                            путь куда есть доступ всем
-                                .requestMatchers("/api/welcome").permitAll()
-                                .requestMatchers("/api/seller").permitAll()
+                                .requestMatchers("/user/endpoint").permitAll()
+                                .requestMatchers("/api/user/add").permitAll()
 //                            только зареганы
-                                .requestMatchers("/api/seller").authenticated())
+                                .requestMatchers("/user/secret").authenticated()
+                                )
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll).build();
 
 
 
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(this.passwordEncoder());
+        provider.setUserDetailsService(this.userDetailsService());
+        return provider;
     }
 
     @Bean

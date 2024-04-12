@@ -1,9 +1,10 @@
 package fun.digitallpepper.logistic_service.model;
 
+
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /*
 логин (ключ)
@@ -16,19 +17,14 @@ import java.util.ArrayList;
 * */
 @Entity
 @Data
-@Table(name = "sellers")
-public class Seller {
+@Table(name = "sellerdata")
+public class SellerData {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(unique = true)
-    private String login;
     private String companyName;
-    private String email;
-    private String phone;
-    private String password;
     @OneToMany
-    private ArrayList<Product> products;
+    private List<Product> products;
 //    todo мааааакс сделай пжпжпж
 //    private List<PickupPoint> pickupPoints;
 //    private List<Warehouse> warehouses;

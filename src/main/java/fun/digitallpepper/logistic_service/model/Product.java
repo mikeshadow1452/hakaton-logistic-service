@@ -17,7 +17,6 @@ public class Product {
     private Double price;
     private String description;
     private String imagePath;
-    @OneToOne
-    @JoinColumn(name = "id", table = "sellers")
-    private Seller seller;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User seller;
 }

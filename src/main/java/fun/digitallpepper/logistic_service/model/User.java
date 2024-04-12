@@ -1,36 +1,42 @@
-package fun.digitallpepper.logistic_service.config;
+package fun.digitallpepper.logistic_service.model;
 
-import fun.digitallpepper.logistic_service.model.MyUserSecurity;
+import jakarta.persistence.*;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.stream.Collectors;
+import java.util.List;
 
-public class MyUserDetails implements UserDetails {
-
-    private MyUserSecurity user;
-
-    public MyUserDetails(MyUserSecurity user) {
-        this.user = user;
-    }
+@Data
+@Entity
+@Table(name = "users")
+public class User implements UserDetails {
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Column(unique = true)
+    private String username;
+    @Column(unique = true)
+    private String email;
+    private String password;
+//    @OneToOne
+//    private BuyerData buyerData;
+//    @OneToOne
+//    private SellerData sellerData;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private RoleEnum role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(user.getRoles().split(", "))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());    }
-
-    @Override
-    public String getPassword() {
-        return user.getPassword();
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return username;
     }
 
     @Override
