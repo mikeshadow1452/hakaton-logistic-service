@@ -32,9 +32,11 @@ public class SecurityConfig {
                         auch -> auch
 //                            путь куда есть доступ всем
                                 .requestMatchers("/user/endpoint").permitAll()
-                                .requestMatchers("/api/user/add").permitAll()
+                                .requestMatchers("/api/user/buyer-registration").permitAll()
+                                .requestMatchers("/api/user/seller-registration").permitAll()
 //                            только зареганы
-                                .requestMatchers("/user/secret").authenticated()
+//                                .requestMatchers("/user/secret").authenticated()
+                                .anyRequest().permitAll()
                                 )
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll).build();
 

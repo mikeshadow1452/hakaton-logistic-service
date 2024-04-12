@@ -14,6 +14,8 @@ public class BuyerData {
     @Id
     @GeneratedValue
     private Long id;
+    @OneToOne
+    private User user;
 //    private Cart cart;
     @OneToMany
     private List<Order> orderHistory;

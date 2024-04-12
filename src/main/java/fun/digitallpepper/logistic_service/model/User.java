@@ -21,10 +21,12 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String email;
     private String password;
-//    @OneToOne
-//    private BuyerData buyerData;
-//    @OneToOne
-//    private SellerData sellerData;
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private BuyerData buyerData;
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private SellerData sellerData;
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private RoleEnum role;
