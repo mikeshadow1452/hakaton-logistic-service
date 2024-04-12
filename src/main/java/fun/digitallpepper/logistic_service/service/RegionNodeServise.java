@@ -1,5 +1,6 @@
 package fun.digitallpepper.logistic_service.service;
 
+import fun.digitallpepper.logistic_service.controller.EdgeRequest;
 import fun.digitallpepper.logistic_service.model.Edge;
 import fun.digitallpepper.logistic_service.model.RegionNode;
 
@@ -13,7 +14,9 @@ public interface RegionNodeServise {
     RegionNode getRegionNode(Integer id);
     RegionNode getRegionNode(String name);
 
-    Edge createEdge(RegionNode node1, RegionNode node2, Long weight);  // Создаёт ребро между двумя нодами
+    Edge createEdge(RegionNode node1, RegionNode node2, EdgeRequest edge);  // Создаёт ребро между двумя нодами
+//    Edge createEdge(RegionNode node1, RegionNode node2, Long weight);  // Создаёт ребро между двумя нодами
+
     List<RegionNode> getAllNodes();
 
 }

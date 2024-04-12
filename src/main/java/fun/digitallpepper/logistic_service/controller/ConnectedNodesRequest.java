@@ -6,5 +6,5 @@ import lombok.Data;
 public class ConnectedNodesRequest {
     private String name1;
     private String name2;
-    private Long weight;
+    private Integer weight;
 }

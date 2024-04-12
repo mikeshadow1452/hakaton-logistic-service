@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
-import java.util.LinkedHashSet;
-
 @Entity
 @Data
 @Table(name = "edges")
@@ -23,8 +20,9 @@ public class Edge {
     @JsonBackReference
     private RegionNode region2;  // Второй регион
 
-    private Long weight;
-
+    private Integer weight;//цена - руб
+    private Integer distance;//дист - км
+    private Integer time;//время - час
     public RegionNode getOtherNode(RegionNode node) {
 
         if (region1.equals(node)) {

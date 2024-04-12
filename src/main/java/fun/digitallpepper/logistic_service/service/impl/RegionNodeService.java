@@ -1,5 +1,6 @@
 package fun.digitallpepper.logistic_service.service.impl;
 
+import fun.digitallpepper.logistic_service.controller.EdgeRequest;
 import fun.digitallpepper.logistic_service.model.Edge;
 import fun.digitallpepper.logistic_service.model.RegionConnection;
 import fun.digitallpepper.logistic_service.model.RegionNode;
@@ -40,15 +41,18 @@ public class RegionNodeService implements fun.digitallpepper.logistic_service.se
 //    }
 
     @Override
-    public Edge createEdge(RegionNode node1, RegionNode node2, Long weight) {
+    public Edge createEdge(RegionNode node1, RegionNode node2, EdgeRequest edgeRequest) {
+//        todo
         Edge edge = new Edge();
-        edge.setWeight(weight);
+        edge.setWeight(edgeRequest.getWeight());
+        edge.setDistance(edgeRequest.getWeight());
+        edge.setTime(edgeRequest.getTime());
+
         edge.setRegion2(node2);
         edge.setRegion1(node1);
 
         node2.getEdges().add(edge);
         node1.getEdges().add(edge);
-
 
         RegionConnection connection1 = new RegionConnection();
         connection1.setRegion1(node1);
@@ -79,15 +83,15 @@ public class RegionNodeService implements fun.digitallpepper.logistic_service.se
 
     public List<RegionNode> findShortestPath(RegionNode source, RegionNode target) {
         // 1. Инициализация
-        Map<RegionNode, Long> distances = new HashMap<>(); // Расстояния до вершин
+        Map<RegionNode, Integer> distances = new HashMap<>(); // Расстояния до вершин
         Map<RegionNode, RegionNode> previous = new HashMap<>(); // Предыдущие вершины на пути
         Set<RegionNode> visited = new HashSet<>(); // Посещенные вершины
         PriorityQueue<RegionNode> queue = new PriorityQueue<>(Comparator.comparingLong(distances::get)); // Очередь с приоритетом по расстоянию
 
         for (RegionNode node : repository.findAll()) {
-            distances.put(node, Long.MAX_VALUE); // Изначально расстояния до всех вершин бесконечны
+            distances.put(node, Integer.MAX_VALUE); // Изначально расстояния до всех вершин бесконечны
         }
-        distances.put(source, 0L); // Расстояние до источника равно 0
+        distances.put(source, 0); // Расстояние до источника равно 0
         queue.add(source);
 
         // 2. Основной цикл
@@ -106,7 +110,7 @@ public class RegionNodeService implements fun.digitallpepper.logistic_service.se
                     continue; // Пропускаем уже посещенные вершины
                 }
 
-                long newDistance = distances.get(current) + edge.getWeight();
+                Integer newDistance = distances.get(current) + edge.getWeight();
                 if (newDistance < distances.get(neighbor)) {
                     distances.put(neighbor, newDistance);
                     previous.put(neighbor, current);
@@ -115,24 +119,9 @@ public class RegionNodeService implements fun.digitallpepper.logistic_service.se
             }
         }
 
-//        // 3. Восстановление пути
-//        List<RegionNode> path = new ArrayList<>();
-//        RegionNode current = target;
-//        while (current != null) {
-//            path.add(current);
-//            current = previous.get(current);
-//        }
-//        Collections.reverse(path); // Разворачиваем путь, чтобы он был от источника к цели
-//
-//        return path;
-//
-//        {
-        // ... (существующий код) ...
-
-        // 3. Восстановление пути и сохранение длины
         List<RegionNode> path = new ArrayList<>();
         RegionNode current = target;
-        long shortestDistance = distances.get(target);  // Получаем длину кратчайшего пути из distances
+        int shortestDistance = distances.get(target);  // Получаем длину кратчайшего пути из distances
 
         while (current != null) {
             path.add(current);
@@ -142,22 +131,22 @@ public class RegionNodeService implements fun.digitallpepper.logistic_service.se
 
         // Здесь можно использовать shortestDistance, например, вывести на экран или сохранить куда-то
         System.out.println("Длина кратчайшего пути: " + shortestDistance);
-        Map<List<RegionNode>,Long> answers = new HashMap<>();
+         Map<List<RegionNode>, Integer> answers = new HashMap<>();
         answers.put(path, shortestDistance);
         return path;
     }
 
-    public Map<List<RegionNode>, Long> findShortestPathAndWeight(RegionNode source, RegionNode target) {
+    public  Map<List<RegionNode>, Integer> findShortestPathAndWeight(RegionNode source, RegionNode target) {
         // 1. Инициализация
-        Map<RegionNode, Long> distances = new HashMap<>(); // Расстояния до вершин
+        Map<RegionNode, Integer> distances = new HashMap<>(); // Расстояния до вершин
         Map<RegionNode, RegionNode> previous = new HashMap<>(); // Предыдущие вершины на пути
         Set<RegionNode> visited = new HashSet<>(); // Посещенные вершины
         PriorityQueue<RegionNode> queue = new PriorityQueue<>(Comparator.comparingLong(distances::get)); // Очередь с приоритетом по расстоянию
 
         for (RegionNode node : repository.findAll()) {
-            distances.put(node, Long.MAX_VALUE); // Изначально расстояния до всех вершин бесконечны
+            distances.put(node, Integer.MAX_VALUE); // Изначально расстояния до всех вершин бесконечны
         }
-        distances.put(source, 0L); // Расстояние до источника равно 0
+        distances.put(source, 0); // Расстояние до источника равно 0
         queue.add(source);
 
         // 2. Основной цикл
@@ -176,7 +165,7 @@ public class RegionNodeService implements fun.digitallpepper.logistic_service.se
                     continue; // Пропускаем уже посещенные вершины
                 }
 
-                long newDistance = distances.get(current) + edge.getWeight();
+                Integer newDistance = distances.get(current) + edge.getDistance();
                 if (newDistance < distances.get(neighbor)) {
                     distances.put(neighbor, newDistance);
                     previous.put(neighbor, current);
@@ -185,24 +174,9 @@ public class RegionNodeService implements fun.digitallpepper.logistic_service.se
             }
         }
 
-//        // 3. Восстановление пути
-//        List<RegionNode> path = new ArrayList<>();
-//        RegionNode current = target;
-//        while (current != null) {
-//            path.add(current);
-//            current = previous.get(current);
-//        }
-//        Collections.reverse(path); // Разворачиваем путь, чтобы он был от источника к цели
-//
-//        return path;
-//
-//        {
-        // ... (существующий код) ...
-
-        // 3. Восстановление пути и сохранение длины
         List<RegionNode> path = new ArrayList<>();
         RegionNode current = target;
-        long shortestDistance = distances.get(target);  // Получаем длину кратчайшего пути из distances
+        int shortestDistance = distances.get(target);  // Получаем длину кратчайшего пути из distances
 
         while (current != null) {
             path.add(current);
@@ -212,10 +186,119 @@ public class RegionNodeService implements fun.digitallpepper.logistic_service.se
 
         // Здесь можно использовать shortestDistance, например, вывести на экран или сохранить куда-то
         System.out.println("Длина кратчайшего пути: " + shortestDistance);
-        Map<List<RegionNode>,Long> answers = new HashMap<>();
+        Map<List<RegionNode>, Integer> answers = new HashMap<>();
         answers.put(path, shortestDistance);
         return answers;
     }
+    public  Map<List<RegionNode>, Integer> findLightestPathAndWeight(RegionNode source, RegionNode target) {
+        // 1. Инициализация
+        Map<RegionNode, Integer> distances = new HashMap<>(); // Расстояния до вершин
+        Map<RegionNode, RegionNode> previous = new HashMap<>(); // Предыдущие вершины на пути
+        Set<RegionNode> visited = new HashSet<>(); // Посещенные вершины
+        PriorityQueue<RegionNode> queue = new PriorityQueue<>(Comparator.comparingLong(distances::get)); // Очередь с приоритетом по расстоянию
+
+        for (RegionNode node : repository.findAll()) {
+            distances.put(node, Integer.MAX_VALUE); // Изначально расстояния до всех вершин бесконечны
+        }
+        distances.put(source, 0); // Расстояние до источника равно 0
+        queue.add(source);
+
+        // 2. Основной цикл
+        while (!queue.isEmpty()) {
+            RegionNode current = queue.poll(); // Извлекаем вершину с минимальным расстоянием
+            if (current.equals(target)) {
+                break; // Если достигли цели, выходим из цикла
+            }
+
+            visited.add(current);
+
+            for (Edge edge : current.getEdges()) {
+
+                RegionNode neighbor = edge.getOtherNode(current); // Получаем соседнюю вершину
+                if (visited.contains(neighbor)) {
+                    continue; // Пропускаем уже посещенные вершины
+                }
+
+                Integer newDistance = distances.get(current) + edge.getWeight();
+                if (newDistance < distances.get(neighbor)) {
+                    distances.put(neighbor, newDistance);
+                    previous.put(neighbor, current);
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        List<RegionNode> path = new ArrayList<>();
+        RegionNode current = target;
+        int shortestDistance = distances.get(target);  // Получаем длину кратчайшего пути из distances
+
+        while (current != null) {
+            path.add(current);
+            current = previous.get(current);
+        }
+        Collections.reverse(path); // Разворачиваем путь
+
+        // Здесь можно использовать shortestDistance, например, вывести на экран или сохранить куда-то
+        System.out.println("Длина кратчайшего пути: " + shortestDistance);
+        Map<List<RegionNode>, Integer> answers = new HashMap<>();
+        answers.put(path, shortestDistance);
+        return answers;
+    }
+    public  Map<List<RegionNode>, Integer> findFastestPathAndWeight(RegionNode source, RegionNode target) {
+        // 1. Инициализация
+        Map<RegionNode, Integer> distances = new HashMap<>(); // Расстояния до вершин
+        Map<RegionNode, RegionNode> previous = new HashMap<>(); // Предыдущие вершины на пути
+        Set<RegionNode> visited = new HashSet<>(); // Посещенные вершины
+        PriorityQueue<RegionNode> queue = new PriorityQueue<>(Comparator.comparingLong(distances::get)); // Очередь с приоритетом по расстоянию
+
+        for (RegionNode node : repository.findAll()) {
+            distances.put(node, Integer.MAX_VALUE); // Изначально расстояния до всех вершин бесконечны
+        }
+        distances.put(source, 0); // Расстояние до источника равно 0
+        queue.add(source);
+
+        // 2. Основной цикл
+        while (!queue.isEmpty()) {
+            RegionNode current = queue.poll(); // Извлекаем вершину с минимальным расстоянием
+            if (current.equals(target)) {
+                break; // Если достигли цели, выходим из цикла
+            }
+
+            visited.add(current);
+
+            for (Edge edge : current.getEdges()) {
+
+                RegionNode neighbor = edge.getOtherNode(current); // Получаем соседнюю вершину
+                if (visited.contains(neighbor)) {
+                    continue; // Пропускаем уже посещенные вершины
+                }
+
+                Integer newDistance = distances.get(current) + edge.getTime();
+                if (newDistance < distances.get(neighbor)) {
+                    distances.put(neighbor, newDistance);
+                    previous.put(neighbor, current);
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        List<RegionNode> path = new ArrayList<>();
+        RegionNode current = target;
+        int shortestDistance = distances.get(target);  // Получаем длину кратчайшего пути из distances
+
+        while (current != null) {
+            path.add(current);
+            current = previous.get(current);
+        }
+        Collections.reverse(path); // Разворачиваем путь
+
+        // Здесь можно использовать shortestDistance, например, вывести на экран или сохранить куда-то
+        System.out.println("Длина кратчайшего пути: " + shortestDistance);
+        Map<List<RegionNode>, Integer> answers = new HashMap<>();
+        answers.put(path, shortestDistance);
+        return answers;
+    }
+
 
     @Override
     public RegionNode createNode(String name) {
@@ -226,10 +309,10 @@ public class RegionNodeService implements fun.digitallpepper.logistic_service.se
     }
 
 
-    public Edge createConnectedNodes(String name1, String name2, Long weight) {
+    public Edge createConnectedNodes(String name1, String name2, EdgeRequest edge) {
         RegionNode node1 = createNode(name1);
         RegionNode node2 = createNode(name2);
-        return createEdge(node1, node2, weight);
+        return createEdge(node1, node2, edge);
     }
 
 
