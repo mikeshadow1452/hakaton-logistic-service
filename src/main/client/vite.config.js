@@ -9,12 +9,11 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        app: 'src/components/index.html'
-        // mainPage: resolve('src/mainPage/mainPage.html'),
+      mainPage: resolve('src/mainPage/mainPage.html'),
       }
     }
   },
   server: {
-    open: 'src/components/index.html'
+    open: 'src/mainPage/mainPage.html'
   }
 })
