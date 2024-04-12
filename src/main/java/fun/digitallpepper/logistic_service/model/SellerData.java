@@ -22,6 +22,8 @@ public class SellerData {
     @Id
     @GeneratedValue
     private Long id;
+    @OneToOne
+    private User user;
     private String companyName;
     @OneToMany
     private List<Product> products;
