@@ -1,6 +1,6 @@
 function Map (){
     return (
-        <div className={"border-l-2 border-violet-500"}><img src={"/src/assets/map.png"}/></div>
+        <div className={"border-l-2 border-violet-500"}><img src={"/imgs/map.png"}/></div>
     )
 }
 
