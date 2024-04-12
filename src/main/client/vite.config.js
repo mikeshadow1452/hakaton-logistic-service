@@ -9,12 +9,16 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        app: 'src/components/index.html'
-        // mainPage: resolve('src/mainPage/mainPage.html'),
+        mainPage: resolve('src/mainPage/mainPage.html'),
+        orderPay: resolve('src/orderPay/orderPay.html'),
+        cart: resolve('src/cart/cart.html'),
+        login: resolve('src/logReg/login/login.html'),
+        registerSeller:resolve('src/logReg/register-as-Seller/registerSeller.html'),
+        registerUser:resolve('src/logReg/register-as-User/registerUser.html')
       }
     }
   },
   server: {
-    open: 'src/components/index.html'
+    open: 'src/mainPage/mainPage.html'
   }
 })
